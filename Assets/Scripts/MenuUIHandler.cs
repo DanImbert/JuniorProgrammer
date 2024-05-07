@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
-// Sets the script to be executed later than all default scripts
-// This is helpful for UI, since other things may need to be initialized before setting the UI
 [DefaultExecutionOrder(1000)]
 public class MenuUIHandler : MonoBehaviour
 {
-    public ColorPicker ColorPicker;
-    public Button StartButton;
+	public ColorPicker ColorPicker;
+	public Button StartButton;
 	public Button ExitButton;
 	public Button SaveColorButton;
 	public Button LoadColorButton;
@@ -20,34 +21,15 @@ public class MenuUIHandler : MonoBehaviour
 
 	public void NewColorSelected(Color color)
 	{
-		// No need to save the color immediately, as the ColorPicker component should handle it internally
-	}
-
-	public void StartButtonClicked()
-	{
-		SceneManager.LoadScene("Main");
-	}
-
-	public void ExitButtonClicked()
-	{
 		
-		Application.Quit();
+		SaveSelectedColor(color);
 	}
 
-
-	private void Start()
-    {
-        
-		ColorPicker.Init();
-		ColorPicker.onColorChanged += NewColorSelected;
-		LoadSelectedColor();
-
-	}
 
 	public void SaveColorButtonClicked()
 	{
 		// Save the currently selected color from the ColorPicker
-		SaveSelectedColor(ColorPicker.CurrentColor);
+		SaveSelectedColor(ColorPicker.SelectedColor);
 	}
 
 	public void LoadColorButtonClicked()
@@ -56,7 +38,28 @@ public class MenuUIHandler : MonoBehaviour
 		LoadSelectedColor();
 	}
 
-	void SaveSelectedColor(Color color)
+	private void Start()
+	{
+		ColorPicker.Init();
+		ColorPicker.onColorChanged += NewColorSelected;
+		
+	}
+
+	public void StartNew()
+	{
+		SceneManager.LoadScene(1);
+	}
+
+	public void ExitButtonClicked()
+	{
+     #if UNITY_EDITOR
+		EditorApplication.ExitPlaymode();
+     #else
+        Application.Quit(); // original code to quit Unity player
+     #endif
+	}
+
+	private void SaveSelectedColor(Color color)
 	{
 		// Save the selected color to PlayerPrefs
 		PlayerPrefs.SetFloat(ColorKey + "_R", color.r);
@@ -66,7 +69,7 @@ public class MenuUIHandler : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 
-	 void LoadSelectedColor()
+	private void LoadSelectedColor()
 	{
 		// Load the selected color from PlayerPrefs
 		if (PlayerPrefs.HasKey(ColorKey + "_R"))
@@ -77,6 +80,8 @@ public class MenuUIHandler : MonoBehaviour
 			float a = PlayerPrefs.GetFloat(ColorKey + "_A");
 			Color selectedColor = new Color(r, g, b, a);
 
+			// Apply the loaded color to the ColorPicker
+			ColorPicker.SelectColor(selectedColor);
 			
 		}
 	}

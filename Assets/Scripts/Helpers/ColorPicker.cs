@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class ColorPicker : MonoBehaviour
@@ -10,8 +11,9 @@ public class ColorPicker : MonoBehaviour
     
     public Color SelectedColor { get; private set; }
     public System.Action<Color> onColorChanged;
+	
 
-    List<Button> m_ColorButtons = new List<Button>();
+	List<Button> m_ColorButtons = new List<Button>();
     
     // Start is called before the first frame update
     public void Init()
@@ -48,4 +50,6 @@ public class ColorPicker : MonoBehaviour
             }
         }
     }
+
+
 }
