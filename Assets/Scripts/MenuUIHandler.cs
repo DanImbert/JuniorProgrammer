@@ -21,8 +21,8 @@ public class MenuUIHandler : MonoBehaviour
 
 	public void NewColorSelected(Color color)
 	{
-		
-		SaveSelectedColor(color);
+
+		MainManager.Instance.TeamColor = color;
 	}
 
 
