@@ -341,7 +341,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1960852281}
         m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
-        m_MethodName: Exit
+        m_MethodName: ExitButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1111,7 +1111,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1960852281}
         m_TargetAssemblyTypeName: MenuUIHandler, Assembly-CSharp
-        m_MethodName: startButton
+        m_MethodName: StartButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1635,6 +1635,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ColorPicker: {fileID: 991742394}
   StartButton: {fileID: 1278815347}
+  ExitButton: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
