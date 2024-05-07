@@ -12,15 +12,22 @@ public class MenuUIHandler : MonoBehaviour
 {
     public ColorPicker ColorPicker;
     public Button StartButton;
+	public Button ExitButton;
 
-    public void NewColorSelected(Color color)
+	public void NewColorSelected(Color color)
     {
         // add code here to handle when a color is selected
     }
 
-	public void startButton()
+	public void StartButtonClicked()
 	{
 		SceneManager.LoadScene("Main");
+	}
+
+	public void ExitButtonClicked()
+	{
+		// Close the application
+		Application.Quit();
 	}
 
 
