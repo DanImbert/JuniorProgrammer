@@ -1,4 +1,4 @@
-# JuniorProgrammer
+# ResourceManagement
 
 ## Project Overview
 
