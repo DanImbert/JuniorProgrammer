@@ -10,5 +10,7 @@ This project aims to demonstrate several key principles and practices in softwar
 
 - **Abstraction in User Controls:** Employing abstraction techniques to create reusable and customizable user controls, enhancing maintainability and scalability.
 
+- **Encapsulation:** Applying encapsulation to encapsulate the internal state of objects, promoting modularity and reducing dependencies between components.
+
 - **Inheritance and Polymorphism:** Leveraging inheritance and polymorphism in custom work productivity units to promote code reusability and extensibility.
 
